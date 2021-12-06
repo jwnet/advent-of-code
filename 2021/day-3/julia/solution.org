@@ -1,0 +1,130 @@
+#+TITLE: Solving Advent of Code Day 3 Using Julia
+
+* Step 1: Formatting the Input
+
+Since I want to work with the data as a matrix, I opened up vim
+and, using a macro, put spaces between each digit of the numbers.
+
+This:
+#+begin_example
+100100110110
+101110110110
+010100010100
+011001110000
+#+end_example
+
+becomes this:
+#+begin_example
+1 0 0 1 0 0 1 1 0 1 1 0
+1 0 1 1 1 0 1 1 0 1 1 0
+0 1 0 1 0 0 0 1 0 1 0 0
+0 1 1 0 0 1 1 1 0 0 0 0
+#+end_example
+
+* Step 2: Reading the Input into Julia
+
+In the Julia REPL:
+#+begin_src julia
+using DelimitedFiles
+
+input = readdlm("input")
+#+end_src
+
+output:
+#+begin_example
+1000×12 Matrix{Int64}:
+ 1  0  0  1  0  0  1  1  0  1  1  0
+ 1  0  1  1  1  0  1  1  0  1  1  0
+ 0  1  0  1  0  0  0  1  0  1  0  0
+ 0  1  1  0  0  1  1  1  0  0  0  0
+ 0  0  0  0  0  0  0  0  0  1  1  1
+ 0  0  0  0  1  0  1  1  0  0  0  1
+ 0  0  1  1  1  1  0  0  0  0  0  1
+ 1  0  0  0  1  0  0  0  0  0  0  1
+ 0  1  0  1  0  0  1  1  0  0  1  1
+ 0  1  0  0  0  0  0  1  0  1  1  0
+ 0  1  0  0  0  0  0  0  0  0  1  1
+ 0  1  0  1  0  1  0  0  1  0  0  0
+ 0  1  1  0  1  1  1  0  1  1  0  0
+ 0  1  1  1  0  0  1  1  0  1  1  1
+ 0  1  1  0  1  1  0  0  0  0  0  0
+ 0  0  1  0  1  0  0  1  0  0  1  0
+ ⋮              ⋮              ⋮  
+ 0  0  0  1  0  1  1  1  0  0  0  1
+ 0  0  1  0  0  0  0  0  1  0  1  0
+ 0  1  0  0  0  1  1  0  1  1  0  1
+ 1  0  1  1  0  1  0  0  1  1  0  1
+ 1  1  1  1  0  0  0  1  0  0  0  0
+ 0  1  1  1  1  0  0  0  0  1  1  0
+ 1  0  0  0  1  1  1  0  1  1  1  0
+ 1  1  1  1  0  0  0  0  1  1  1  0
+ 1  0  1  0  0  0  1  0  0  0  1  0
+ 1  0  1  0  1  0  1  0  0  1  0  1
+ 1  1  0  0  1  1  0  1  0  1  1  1
+ 1  1  0  0  1  0  1  0  1  0  1  0
+ 1  1  0  1  1  0  1  1  1  1  1  1
+ 0  1  0  0  1  0  1  1  0  0  1  1
+ 0  0  0  1  1  1  1  1  0  0  1  0
+ 1  1  1  1  0  0  1  1  0  0  1  1
+#+end_example
+
+* Step 3: Count the 1's in each Column
+
+#+begin_src julia
+counts = sum(input, dims=1)
+#+end_src
+
+output:
+#+begin_example
+1×12 Matrix{Int64}:
+ 509  522  483  508  525  511  482  488  488  514  517  525
+#+end_example
+
+* Step 4: Turn the Most Common Bits into Binary String
+
+Turn into array of string bits:
+#+begin_src julia
+map((x) -> x > 500 ? "1" : "0", counts)
+#+end_src
+
+*output:*
+#+begin_example
+1×12 Matrix{String}:
+ "1"  "1"  "0"  "1"  "1"  "1"  "0"  "0"  "0"  "1"  "1"  "1"
+#+end_example
+
+Join that array into one string:
+#+begin_src julia
+mostCommonStr = join(map((x) -> x > 500 ? "1" : "0", counts))
+#+end_src
+
+*output:*
+#+begin_example
+"110111000111"
+#+end_example
+
+* Step 5: Turn the Least Common Bits into a Binary String
+
+This is almost identical to the previous step.
+#+begin_src julia
+leastCommonStr = join(map(x) -> x < 500 ? "1" : "0", counts))
+#+end_src
+
+*output:*
+#+begin_example
+"001000111000"
+#+end_example
+
+* Step 6: Convert our Variables into Decimal
+
+#+begin_src julia
+gamma = parse(Int, mostCommonStr, base=2)
+epsilon = parse(Int, leastCommonStr, base=2)
+#+end_src
+
+* Step 7: Complete Part One!
+
+Multiply our numbers together to get the result:
+#+begin_src julia
+result = epsillon * gamma
+#+end_src
