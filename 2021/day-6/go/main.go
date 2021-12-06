@@ -3,12 +3,12 @@ package main
 import "fmt"
 
 func fishBreeding(fish []int, ndays int) int {
-	var fishCycle = make(map[int]int, 9)
+	fishCycle := [9]int{}
 	for _, fish := range fish {
 		fishCycle[fish]++
 	}
 	for i := 0; i < ndays; i++ {
-		var updatedCycle = make(map[int]int, 9)
+		updatedCycle := [9]int{}
 		for day, nfish := range fishCycle {
 			if day == 0 {
 				updatedCycle[6] += nfish
