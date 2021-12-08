@@ -18,7 +18,7 @@ var sample = []signal{
 }
 
 var input = []signal{
-	{[]string{"ec", "cabfe", "afebd", "dbagef", "afbcg", "feabcd", "cdef", "e[]stringafdcbg", "ecb", "caegdb"}, []string{"ceb", "ecb", "febac", "ec"}},
+	{[]string{"ec", "cabfe", "afebd", "dbagef", "afbcg", "feabcd", "cdef", "eafdcbg", "ecb", "caegdb"}, []string{"ceb", "ecb", "febac", "ec"}},
 	{[]string{"acfdg", "ea", "baec", "dgbafec", "cfebg", "efa", "cfebgd", "dfbaeg", "egcaf", "abecfg"}, []string{"bgcdfe", "ebac", "cadgf", "dceagfb"}},
 	{[]string{"gfed", "caefd", "dcegaf", "ge", "daegc", "bcdag", "dfagbce", "cfbead", "gce", "afbegc"}, []string{"ceadg", "edfg", "gdbca", "fcead"}},
 	{[]string{"ea", "dgfcae", "feba", "cae", "efbcagd", "cagfb", "gedcb", "gbfcad", "gebca", "afbceg"}, []string{"facbgde", "cegdbaf", "cgabe", "degcb"}},
