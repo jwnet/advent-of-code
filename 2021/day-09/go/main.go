@@ -41,7 +41,7 @@ func part1(heightmap [][]int) int {
 	return risks
 }
 
-func basinLeft(heightmap [][]int, start point) (size int) {
+func basinRight(heightmap [][]int, start point) (size int) {
 	size = 0
 	for c := start.c + 1; c < len(heightmap[0]); c++ {
 		if heightmap[start.r][c] == 9 {
@@ -52,7 +52,7 @@ func basinLeft(heightmap [][]int, start point) (size int) {
 	return size
 }
 
-func basinRight(heightmap [][]int, start point) (size int) {
+func basinLeft(heightmap [][]int, start point) (size int) {
 	size = 0
 	for c := start.c - 1; c >= 0; c-- {
 		if heightmap[start.r][c] == 9 {
@@ -87,17 +87,25 @@ func basinDown(heightmap [][]int, start point) (size int) {
 
 func part2(heightmap [][]int) int {
 	lowPoints := lowPoints(heightmap)
-	basinSizes := []int{-1, -1, -1}
+	largest3Basins := []int{-1, -1, -1}
 	for _, p := range lowPoints {
 		size := 1 + basinLeft(heightmap, p) + basinRight(heightmap, p) + basinDown(heightmap, p) + basinUp(heightmap, p)
-		d1 := size - basinSizes[0]
-		d2 := size - basinSizes[1]
-		d3 := size - basinSizes[2]
+		d1 := size - largest3Basins[0]
+		d2 := size - largest3Basins[1]
+		d3 := size - largest3Basins[2]
+		if d1 + d2 + d3 <= 0 {
+			continue
+		}
 		switch {
-			d1 >
+		case d1 >= d2 && d1 >= d3:
+			largest3Basins[0] = size
+		case d2 >= d1 && d2 >= d3:
+			largest3Basins[1] = size
+		case d3 >= d1 && d3 >= d2:
+			largest3Basins[2] = size
 		}
 	}
-	return largest
+	return largest3Basins[0] * largest3Basins[1] * largest3Basins[2]
 }
 
 func main() {
