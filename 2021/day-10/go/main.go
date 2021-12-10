@@ -46,7 +46,7 @@ NEXTLINE:
 			case '(', '[', '{', '<':
 				stack.push(r)
 			default:
-				if m, ok := stack.pop(); ok && match[r] != m {
+				if m, ok := stack.pop(); !ok || match[r] != m {
 					score += points[r]
 					continue NEXTLINE
 				}
@@ -69,7 +69,7 @@ NEXTLINE:
 			case '(', '[', '{', '<':
 				stack.push(r)
 			default:
-				if m, ok := stack.pop(); ok && match[r] != m {
+				if m, ok := stack.pop(); !ok || match[r] != m {
 					continue NEXTLINE
 				}
 			}
