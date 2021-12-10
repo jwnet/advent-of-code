@@ -1,9 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 type point struct {
-	r, c int
+	row, col int
 }
 
 func lowPoints(heightmap [][]int) []point {
@@ -18,15 +21,15 @@ func lowPoints(heightmap [][]int) []point {
 			if j < len(row)-1 && height >= row[j+1] {
 				continue
 			}
-			// above
+			// up
 			if i > 0 && height >= heightmap[i-1][j] {
 				continue
 			}
-			// below
+			// down
 			if i < len(heightmap)-1 && height >= heightmap[i+1][j] {
 				continue
 			}
-			lp = append(lp, point{r: i, c: j})
+			lp = append(lp, point{row: i, col: j})
 		}
 	}
 	return lp
@@ -36,75 +39,60 @@ func part1(heightmap [][]int) int {
 	risks := 0
 	lowPoints := lowPoints(heightmap)
 	for _, p := range lowPoints {
-		risks += heightmap[p.r][p.c] + 1
+		risks += heightmap[p.row][p.col] + 1
 	}
 	return risks
 }
 
-func basinLeft(heightmap [][]int, start point) (size int) {
-	size = 0
-	for c := start.c + 1; c < len(heightmap[0]); c++ {
-		if heightmap[start.r][c] == 9 {
-			return size
-		}
-		size += 1 + basinUp(heightmap, point{start.r, c}) + basinDown(heightmap, point{start.r, c})
+func exploreBasin(heightmap [][]int, row, col int) (size int) {
+	if h := heightmap[row][col]; h == -1 || h == 9 {
+		return
 	}
-	return size
-}
+	heightmap[row][col] = -1
+	size = 1
 
-func basinRight(heightmap [][]int, start point) (size int) {
-	size = 0
-	for c := start.c - 1; c >= 0; c-- {
-		if heightmap[start.r][c] == 9 {
-			return size
-		}
-		size += 1 + basinUp(heightmap, point{start.r, c}) + basinDown(heightmap, point{start.r, c})
+	// up
+	if row-1 >= 0 {
+		size += exploreBasin(heightmap, row-1, col)
 	}
-	return size
-}
-
-func basinUp(heightmap [][]int, start point) (size int) {
-	size = 0
-	for r := start.r - 1; r >= 0; r-- {
-		if heightmap[r][start.c] == 9 {
-			return size
-		}
-		size += 1
+	// right
+	if col+1 < len(heightmap[0]) {
+		size += exploreBasin(heightmap, row, col+1)
 	}
-	return size
-}
-
-func basinDown(heightmap [][]int, start point) (size int) {
-	size = 0
-	for r := start.r + 1; r < len(heightmap); r++ {
-		if heightmap[r][start.c] == 9 {
-			return size
-		}
-		size += 1
+	// down
+	if row+1 < len(heightmap) {
+		size += exploreBasin(heightmap, row+1, col)
+	}
+	// left
+	if col-1 >= 0 {
+		size += exploreBasin(heightmap, row, col-1)
 	}
 	return size
 }
 
 func part2(heightmap [][]int) int {
 	lowPoints := lowPoints(heightmap)
-	basinSizes := []int{-1, -1, -1}
+	sizes := make([]int, 0, len(lowPoints))
 	for _, p := range lowPoints {
-		size := 1 + basinLeft(heightmap, p) + basinRight(heightmap, p) + basinDown(heightmap, p) + basinUp(heightmap, p)
-		d1 := size - basinSizes[0]
-		d2 := size - basinSizes[1]
-		d3 := size - basinSizes[2]
-		switch {
-			d1 >
-		}
+		sizes = append(sizes, exploreBasin(heightmap, p.row, p.col))
 	}
-	return largest
+	sort.Ints(sizes)
+	largest3 := sizes[len(sizes)-3:]
+	return largest3[0] * largest3[1] * largest3[2]
 }
 
 func main() {
 	fmt.Println("Part One")
-	fmt.Printf("  sample: %d\n", part1(sample)) // 15
-	fmt.Printf("  input : %d\n", part1(input))  // 545
+	fmt.Printf("\tsample: %d\n", part1(sample))
+	fmt.Printf("\tinput : %d\n", part1(input))
 	fmt.Println("Part Two")
-	fmt.Printf("  sample: %d\n", part2(sample))
-	// fmt.Printf("  input : %d\n", part2(input))
+	fmt.Printf("\tsample: %d\n", part2(sample))
+	fmt.Printf("\tinput : %d\n", part2(input))
+
+	// Part One
+	// 	sample: 15
+	// 	input : 545
+	// Part Two
+	// 	sample: 1134
+	// 	input : 950600
 }
