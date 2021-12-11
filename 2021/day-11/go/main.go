@@ -10,7 +10,7 @@ type point struct {
 	Is there no good way to copy 2d arrays???
 */
 
-func copy2d(src [][]int) [][]int {
+func copyOf(src [][]int) [][]int {
 	dst := make([][]int, len(src))
 	for r, row := range src {
 		dst[r] = make([]int, len(row))
@@ -23,7 +23,7 @@ func copy2d(src [][]int) [][]int {
 
 func propagateEnergy(data [][]int, r, c int) (flashes int) {
 	// check out of bounds
-	if r < 0 || r >= len(data) || c < 0 || c >= len(data[0]) {
+	if r < 0 || r >= NROWS || c < 0 || c >= NCOLS {
 		return
 	}
 	// already flashed
@@ -70,19 +70,19 @@ func step(data [][]int) (flashes int) {
 }
 
 func part1(data [][]int) int {
-	grid := copy2d(data)
+	d := copyOf(data)
 	flashes := 0
 	for i := 0; i < 100; i++ {
-		flashes += step(grid)
+		flashes += step(d)
 	}
 	return flashes
 }
 
 func part2(data [][]int) int {
-	grid := copy2d(data)
+	d := copyOf(data)
 	steps := 1
 	for {
-		if flashes := step(grid); flashes == len(grid)*len(grid[0]) {
+		if flashes := step(d); flashes == NROWS*NCOLS {
 			return steps
 		}
 		steps++

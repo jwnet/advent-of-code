@@ -1,5 +1,7 @@
 package main
 
+const NROWS, NCOLS = 10, 10
+
 var sample = [][]int{
 	{5, 4, 8, 3, 1, 4, 3, 2, 2, 3},
 	{2, 7, 4, 5, 8, 5, 4, 7, 1, 1},
