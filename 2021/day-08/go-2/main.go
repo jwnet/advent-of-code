@@ -27,55 +27,46 @@ func bitEncode(p string) uint8 {
 	return num
 }
 
-func decodeOutput(s signal) int {
+func (s signal) decoderFunc() func(string) string {
 	var bit4, bit7 uint8
-	decoded := make(map[string]string)
-	remaining := make([]string, 0, 6)
 	for _, p := range s.patterns {
 		switch len(p) {
-		case 2:
-			decoded[p] = "1"
 		case 3:
-			decoded[p] = "7"
 			bit7 = bitEncode(p)
 		case 4:
-			decoded[p] = "4"
 			bit4 = bitEncode(p)
-		case 7:
-			decoded[p] = "8"
-		default:
-			remaining = append(remaining, p)
 		}
 	}
-	for _, p := range remaining {
-		bitp := bitEncode(p)
-		switch bits.OnesCount8(bitp^bit4) + bits.OnesCount8(bitp^bit7) + len(p) {
-		case 10:
-			decoded[p] = "3"
-		case 11:
-			decoded[p] = "9"
-		case 12:
-			decoded[p] = "5"
-		case 13:
-			decoded[p] = "0"
-		case 14:
-			decoded[p] = "2"
-		case 15:
-			decoded[p] = "6"
+	sureThings := map[int]string{5: "1", 6: "7", 7: "4", 10: "3", 11: "9", 12: "5", 13: "0", 15: "6"}
+	return func(encoded string) string {
+		bitd := bitEncode(encoded)
+		digit, ok := sureThings[bits.OnesCount8(bitd^bit4)+bits.OnesCount8(bitd^bit7)+len(encoded)]
+		if !ok {
+			switch len(encoded) {
+			case 5:
+				digit = "2"
+			case 7:
+				digit = "8"
+			}
 		}
+		return digit
 	}
-	numStr := ""
+}
+
+func (s signal) decodeOutput() int {
+	decoder := s.decoderFunc()
+	numstr := ""
 	for _, d := range s.output {
-		numStr += decoded[d]
+		numstr += decoder(d)
 	}
-	num, _ := strconv.Atoi(numStr)
+	num, _ := strconv.Atoi(numstr)
 	return num
 }
 
 func part2(data []signal) int {
 	sum := 0
 	for _, s := range data {
-		sum += decodeOutput(s)
+		sum += s.decodeOutput()
 	}
 	return sum
 }
