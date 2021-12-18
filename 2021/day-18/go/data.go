@@ -1,11 +1,5 @@
 package main
 
-type snailnum struct {
-	ll, rl int
-	lp, rp *snailnum
-	parent *snailnum
-}
-
 var sample = []snailnum{
 	{lp: &snailnum{lp: &snailnum{ll: 0, rp: &snailnum{ll: 5, rl: 8}}, rp: &snailnum{lp: &snailnum{ll: 1, rl: 7}, rp: &snailnum{ll: 9, rl: 6}}}, rp: &snailnum{lp: &snailnum{ll: 4, rp: &snailnum{ll: 1, rl: 2}}, rp: &snailnum{lp: &snailnum{ll: 1, rl: 4}, rl: 2}}},
 	{lp: &snailnum{lp: &snailnum{ll: 5, rp: &snailnum{ll: 2, rl: 8}}, rl: 4}, rp: &snailnum{ll: 5, rp: &snailnum{lp: &snailnum{ll: 9, rl: 9}, rl: 0}}},
