@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Generate input data source code file
+
+gen_file="data.go"
+data_dir="../data"
+
+[ ! -d "$data_dir" ] && echo "I could not find the data directory :(" && exit 1
+
+echo "package main" > "$gen_file"
+
+for file in "$data_dir"/*
+do
+	[ ! -f "$file" ] && continue # only process regular files
+
+	echo >> "$gen_file"          # print blank line
+
+	var_name="${file##*/}"       # strip parent directories
+	var_name="${var_name%%\.*}"  # strip all file extensions
+
+	sed -f snailfmt.sed "$file" | \
+		awk -v pre="var $var_name = []snailnum" \
+		'BEGIN{print pre" {"}{print "\t"$0","}END{print "}"}' \
+		>> "$gen_file"
+done
