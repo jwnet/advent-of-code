@@ -22,73 +22,62 @@ type coord struct {
 	x, y, z int
 }
 
-func (c coord) String() string {
-	return fmt.Sprintf("%5d, %5d, %5d", c.x, c.y, c.z)
+type beacon struct {
+	c, oc coord // oc is the original coordinates, and does not get changed in rotation
 }
 
-type probe struct {
-	c, oc coord
-}
-
-func (p probe) String() string {
-	return fmt.Sprintf("{x: %4d, y: %4d, z: %4d}", p.c.x, p.c.y, p.c.z)
-}
-
-func (p *probe) rotate(rot int) {
+func (b *beacon) rotate(rot int) {
 	if rot < 0 || rot >= len(rotations) {
 		println("coord.rotate: out of bounds")
 		return
 	}
-	p.c.x = p.transform(rotations[rot].x)
-	p.c.y = p.transform(rotations[rot].y)
-	p.c.z = p.transform(rotations[rot].z)
+	b.c.x = b.transform(rotations[rot].x)
+	b.c.y = b.transform(rotations[rot].y)
+	b.c.z = b.transform(rotations[rot].z)
 }
 
-func (p probe) transform(r int) int {
+func (b *beacon) transform(r int) int {
 	n := 0
 	switch r {
 	case 1:
-		n = p.oc.x
+		n = b.oc.x
 	case -1:
-		n = -p.oc.x
+		n = -b.oc.x
 	case 2:
-		n = p.oc.y
+		n = b.oc.y
 	case -2:
-		n = -p.oc.y
+		n = -b.oc.y
 	case 3:
-		n = p.oc.z
+		n = b.oc.z
 	case -3:
-		n = -p.oc.z
+		n = -b.oc.z
 	}
 	return n
 }
 
 type scanner struct {
-	probes []*probe
-	rot    int   // index of current rotation
-	offset coord // offset from main list of probes
+	beacons []*beacon
+	rot     int   // index of current rotation
+	offset  coord // offset from main list of probes--from scanner 0
 }
 
 func (s *scanner) cycleRotate() {
 	s.rot = (s.rot + 1) % len(rotations)
-	for _, pr := range s.probes {
-		pr.rotate(s.rot)
+	for _, b := range s.beacons {
+		b.rotate(s.rot)
 	}
 }
 
-var scannerCoords = []coord{{0, 0, 0}}
-
 func match12(s1, s2 scanner) (offset coord, ok bool) {
-	for _, pr1 := range s1.probes {
-		pr1_offset := pr1.c
-		for _, pr2 := range s2.probes {
-			pr2_offset := pr2.c
-			if sameProbe(s1, s2, pr1_offset, pr2_offset) {
+	for _, b1 := range s1.beacons {
+		b1_offset := b1.c
+		for _, b2 := range s2.beacons {
+			b2_offset := b2.c
+			if sameBeacon(s1, s2, b1_offset, b2_offset) {
 				ok = true
-				offset.x = s1.offset.x + (pr1.c.x - pr2.c.x)
-				offset.y = s1.offset.y + (pr1.c.y - pr2.c.y)
-				offset.z = s1.offset.z + (pr1.c.z - pr2.c.z)
-				scannerCoords = append(scannerCoords, offset)
+				offset.x = s1.offset.x + (b1.c.x - b2.c.x)
+				offset.y = s1.offset.y + (b1.c.y - b2.c.y)
+				offset.z = s1.offset.z + (b1.c.z - b2.c.z)
 				return
 			}
 		}
@@ -96,11 +85,11 @@ func match12(s1, s2 scanner) (offset coord, ok bool) {
 	return
 }
 
-func sameProbe(s1, s2 scanner, offset1, offset2 coord) bool {
+func sameBeacon(s1, s2 scanner, offset1, offset2 coord) bool {
 	matches := 0
-	for _, pr1 := range s1.probes {
-		for _, pr2 := range s2.probes {
-			if eq(pr1.c, pr2.c, offset1, offset2) {
+	for _, b1 := range s1.beacons {
+		for _, b2 := range s2.beacons {
+			if eq(b1.c, b2.c, offset1, offset2) {
 				matches += 1
 			}
 		}
@@ -117,44 +106,49 @@ func eq(c1, c2, offset1, offset2 coord) bool {
 		c1.z-offset1.z == c2.z-offset2.z
 }
 
-func addProbes(to map[coord]bool, from scanner, offset coord) {
-	for _, pr := range from.probes {
-		c := coord{x: pr.c.x + offset.x, y: pr.c.y + offset.y, z: pr.c.z + offset.z}
+func addBeacons(to map[coord]bool, s scanner) {
+	for _, b := range s.beacons {
+		c := coord{x: b.c.x + s.offset.x, y: b.c.y + s.offset.y, z: b.c.z + s.offset.z}
 		to[c] = true
 	}
 }
 
 func part1(scanners []scanner) int {
 	scannerCoords = []coord{{0, 0, 0}}
-	allProbes := map[coord]bool{}
-
-	// scanner 0 is our baseline
-	for _, p := range scanners[0].probes {
-		allProbes[p.oc] = true
+	allBeacons := map[coord]bool{}
+	for _, b := range scanners[0].beacons {
+		allBeacons[b.c] = true
 	}
 	matchedScanners := []scanner{scanners[0]}
 	scanners = scanners[1:]
 OUTER:
 	for {
 		for _, cur := range matchedScanners {
-			for idx, s2 := range scanners {
+			for idx, s := range scanners {
 				for i := 0; i < len(rotations); i++ {
-					if offset, ok := match12(cur, s2); ok {
-						addProbes(allProbes, s2, offset)
-						s2.offset = offset
-						ns := []scanner{s2}
-						matchedScanners = append(ns, matchedScanners...)
+					if offset, ok := match12(cur, s); ok {
+						s.offset = offset
+						addBeacons(allBeacons, s)
+
+						// add self to front of matchedScanners slice
+						scannerCoords = append(scannerCoords, offset)
+						temp := []scanner{s}
+						matchedScanners = append(temp, matchedScanners...)
+
+						// remove self from scanner slice
 						scanners = append(scanners[:idx], scanners[idx+1:]...)
 						continue OUTER
 					}
-					s2.cycleRotate()
+					s.cycleRotate()
 				}
 			}
 		}
 		break
 	}
-	return len(allProbes)
+	return len(allBeacons)
 }
+
+var scannerCoords = []coord{}
 
 func part2() int {
 	max := 0

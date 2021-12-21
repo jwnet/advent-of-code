@@ -1,7 +1,7 @@
 package main
 
 var input = []scanner{
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{518, 781, -434}, oc: coord{518, 781, -434}},
 		{c: coord{587, -467, -517}, oc: coord{587, -467, -517}},
 		{c: coord{-602, 676, 848}, oc: coord{-602, 676, 848}},
@@ -29,7 +29,7 @@ var input = []scanner{
 		{c: coord{-932, -350, -707}, oc: coord{-932, -350, -707}},
 		{c: coord{348, -491, 716}, oc: coord{348, -491, 716}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{416, -472, 809}, oc: coord{416, -472, 809}},
 		{c: coord{-731, -669, -481}, oc: coord{-731, -669, -481}},
 		{c: coord{508, 490, 518}, oc: coord{508, 490, 518}},
@@ -57,7 +57,7 @@ var input = []scanner{
 		{c: coord{589, -455, 881}, oc: coord{589, -455, 881}},
 		{c: coord{626, -628, -514}, oc: coord{626, -628, -514}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-666, -416, -935}, oc: coord{-666, -416, -935}},
 		{c: coord{-452, -753, 396}, oc: coord{-452, -753, 396}},
 		{c: coord{-600, -412, -831}, oc: coord{-600, -412, -831}},
@@ -85,7 +85,7 @@ var input = []scanner{
 		{c: coord{496, -840, -760}, oc: coord{496, -840, -760}},
 		{c: coord{739, 545, 232}, oc: coord{739, 545, 232}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-300, 354, -552}, oc: coord{-300, 354, -552}},
 		{c: coord{864, -675, -477}, oc: coord{864, -675, -477}},
 		{c: coord{176, -8, -142}, oc: coord{176, -8, -142}},
@@ -113,7 +113,7 @@ var input = []scanner{
 		{c: coord{-677, -565, -496}, oc: coord{-677, -565, -496}},
 		{c: coord{37, -11, 29}, oc: coord{37, -11, 29}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-463, 497, 873}, oc: coord{-463, 497, 873}},
 		{c: coord{-727, 828, -603}, oc: coord{-727, 828, -603}},
 		{c: coord{-358, -623, -409}, oc: coord{-358, -623, -409}},
@@ -141,7 +141,7 @@ var input = []scanner{
 		{c: coord{-262, -724, -326}, oc: coord{-262, -724, -326}},
 		{c: coord{712, -823, -439}, oc: coord{712, -823, -439}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{824, -682, 628}, oc: coord{824, -682, 628}},
 		{c: coord{726, -402, -319}, oc: coord{726, -402, -319}},
 		{c: coord{837, 485, 848}, oc: coord{837, 485, 848}},
@@ -169,7 +169,7 @@ var input = []scanner{
 		{c: coord{560, -423, -263}, oc: coord{560, -423, -263}},
 		{c: coord{-441, 449, 595}, oc: coord{-441, 449, 595}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-315, 309, -414}, oc: coord{-315, 309, -414}},
 		{c: coord{439, -612, -437}, oc: coord{439, -612, -437}},
 		{c: coord{-538, -660, 630}, oc: coord{-538, -660, 630}},
@@ -197,7 +197,7 @@ var input = []scanner{
 		{c: coord{-93, -33, 11}, oc: coord{-93, -33, 11}},
 		{c: coord{686, 444, 772}, oc: coord{686, 444, 772}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{347, 355, 826}, oc: coord{347, 355, 826}},
 		{c: coord{742, -400, -856}, oc: coord{742, -400, -856}},
 		{c: coord{-122, -84, -57}, oc: coord{-122, -84, -57}},
@@ -225,7 +225,7 @@ var input = []scanner{
 		{c: coord{-625, -468, 570}, oc: coord{-625, -468, 570}},
 		{c: coord{812, -405, -882}, oc: coord{812, -405, -882}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{606, -636, 920}, oc: coord{606, -636, 920}},
 		{c: coord{343, -356, -530}, oc: coord{343, -356, -530}},
 		{c: coord{557, -603, 786}, oc: coord{557, -603, 786}},
@@ -253,7 +253,7 @@ var input = []scanner{
 		{c: coord{-470, 377, 455}, oc: coord{-470, 377, 455}},
 		{c: coord{-891, -489, 628}, oc: coord{-891, -489, 628}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{686, -478, -712}, oc: coord{686, -478, -712}},
 		{c: coord{-832, -720, -351}, oc: coord{-832, -720, -351}},
 		{c: coord{-684, 511, 488}, oc: coord{-684, 511, 488}},
@@ -281,7 +281,7 @@ var input = []scanner{
 		{c: coord{-813, 508, 436}, oc: coord{-813, 508, 436}},
 		{c: coord{564, 442, 571}, oc: coord{564, 442, 571}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{718, -564, 500}, oc: coord{718, -564, 500}},
 		{c: coord{663, 813, -420}, oc: coord{663, 813, -420}},
 		{c: coord{-523, -541, 309}, oc: coord{-523, -541, 309}},
@@ -309,7 +309,7 @@ var input = []scanner{
 		{c: coord{-374, -555, -620}, oc: coord{-374, -555, -620}},
 		{c: coord{731, -501, 573}, oc: coord{731, -501, 573}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{897, -579, 604}, oc: coord{897, -579, 604}},
 		{c: coord{903, 560, 336}, oc: coord{903, 560, 336}},
 		{c: coord{466, 465, -620}, oc: coord{466, 465, -620}},
@@ -337,7 +337,7 @@ var input = []scanner{
 		{c: coord{852, 625, 444}, oc: coord{852, 625, 444}},
 		{c: coord{-362, 287, -685}, oc: coord{-362, 287, -685}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{526, 613, -486}, oc: coord{526, 613, -486}},
 		{c: coord{754, 893, 779}, oc: coord{754, 893, 779}},
 		{c: coord{707, 546, -537}, oc: coord{707, 546, -537}},
@@ -365,7 +365,7 @@ var input = []scanner{
 		{c: coord{720, -531, 621}, oc: coord{720, -531, 621}},
 		{c: coord{-235, 794, -503}, oc: coord{-235, 794, -503}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{691, -768, 453}, oc: coord{691, -768, 453}},
 		{c: coord{-484, 762, 339}, oc: coord{-484, 762, 339}},
 		{c: coord{496, 346, 561}, oc: coord{496, 346, 561}},
@@ -393,7 +393,7 @@ var input = []scanner{
 		{c: coord{3, -112, -115}, oc: coord{3, -112, -115}},
 		{c: coord{653, -444, -737}, oc: coord{653, -444, -737}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{243, -555, 655}, oc: coord{243, -555, 655}},
 		{c: coord{750, 450, 795}, oc: coord{750, 450, 795}},
 		{c: coord{10, -110, -8}, oc: coord{10, -110, -8}},
@@ -421,7 +421,7 @@ var input = []scanner{
 		{c: coord{747, 371, 907}, oc: coord{747, 371, 907}},
 		{c: coord{-90, -34, 141}, oc: coord{-90, -34, 141}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{50, -133, 85}, oc: coord{50, -133, 85}},
 		{c: coord{586, 615, 469}, oc: coord{586, 615, 469}},
 		{c: coord{-447, -636, -526}, oc: coord{-447, -636, -526}},
@@ -449,7 +449,7 @@ var input = []scanner{
 		{c: coord{-727, 405, 550}, oc: coord{-727, 405, 550}},
 		{c: coord{-834, -728, 495}, oc: coord{-834, -728, 495}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{407, 710, -769}, oc: coord{407, 710, -769}},
 		{c: coord{-50, -11, 134}, oc: coord{-50, -11, 134}},
 		{c: coord{-702, -757, 515}, oc: coord{-702, -757, 515}},
@@ -477,7 +477,7 @@ var input = []scanner{
 		{c: coord{351, 519, 545}, oc: coord{351, 519, 545}},
 		{c: coord{-439, 841, 786}, oc: coord{-439, 841, 786}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-534, 753, -842}, oc: coord{-534, 753, -842}},
 		{c: coord{-960, -235, 785}, oc: coord{-960, -235, 785}},
 		{c: coord{-525, -322, -659}, oc: coord{-525, -322, -659}},
@@ -505,7 +505,7 @@ var input = []scanner{
 		{c: coord{-500, 756, -724}, oc: coord{-500, 756, -724}},
 		{c: coord{638, -345, 550}, oc: coord{638, -345, 550}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{709, -483, -367}, oc: coord{709, -483, -367}},
 		{c: coord{-680, -877, -594}, oc: coord{-680, -877, -594}},
 		{c: coord{748, -460, -317}, oc: coord{748, -460, -317}},
@@ -533,7 +533,7 @@ var input = []scanner{
 		{c: coord{456, 684, -751}, oc: coord{456, 684, -751}},
 		{c: coord{448, 801, -846}, oc: coord{448, 801, -846}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{548, -925, -540}, oc: coord{548, -925, -540}},
 		{c: coord{766, 660, 842}, oc: coord{766, 660, 842}},
 		{c: coord{667, 528, 811}, oc: coord{667, 528, 811}},
@@ -561,7 +561,7 @@ var input = []scanner{
 		{c: coord{308, 536, -349}, oc: coord{308, 536, -349}},
 		{c: coord{290, -896, 741}, oc: coord{290, -896, 741}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-443, -767, -548}, oc: coord{-443, -767, -548}},
 		{c: coord{-507, 576, 850}, oc: coord{-507, 576, 850}},
 		{c: coord{-568, 497, 777}, oc: coord{-568, 497, 777}},
@@ -589,7 +589,7 @@ var input = []scanner{
 		{c: coord{768, 774, 772}, oc: coord{768, 774, 772}},
 		{c: coord{-69, 15, -48}, oc: coord{-69, 15, -48}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{396, 635, 755}, oc: coord{396, 635, 755}},
 		{c: coord{-441, 773, -515}, oc: coord{-441, 773, -515}},
 		{c: coord{749, -637, 420}, oc: coord{749, -637, 420}},
@@ -617,7 +617,7 @@ var input = []scanner{
 		{c: coord{-406, 749, 432}, oc: coord{-406, 749, 432}},
 		{c: coord{672, 670, -386}, oc: coord{672, 670, -386}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{877, 813, 447}, oc: coord{877, 813, 447}},
 		{c: coord{-554, 665, 637}, oc: coord{-554, 665, 637}},
 		{c: coord{863, 758, 519}, oc: coord{863, 758, 519}},
@@ -645,7 +645,7 @@ var input = []scanner{
 		{c: coord{482, -560, -523}, oc: coord{482, -560, -523}},
 		{c: coord{460, -586, -326}, oc: coord{460, -586, -326}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{558, 412, 431}, oc: coord{558, 412, 431}},
 		{c: coord{78, 20, 44}, oc: coord{78, 20, 44}},
 		{c: coord{721, -315, -843}, oc: coord{721, -315, -843}},
@@ -672,7 +672,7 @@ var input = []scanner{
 		{c: coord{646, -570, 496}, oc: coord{646, -570, 496}},
 		{c: coord{-331, -495, 618}, oc: coord{-331, -495, 618}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{458, -867, 457}, oc: coord{458, -867, 457}},
 		{c: coord{389, 654, -484}, oc: coord{389, 654, -484}},
 		{c: coord{751, 748, 679}, oc: coord{751, 748, 679}},
@@ -700,7 +700,7 @@ var input = []scanner{
 		{c: coord{337, 631, -564}, oc: coord{337, 631, -564}},
 		{c: coord{-589, 513, -282}, oc: coord{-589, 513, -282}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{615, 532, -575}, oc: coord{615, 532, -575}},
 		{c: coord{-720, -384, -668}, oc: coord{-720, -384, -668}},
 		{c: coord{-379, 769, 527}, oc: coord{-379, 769, 527}},
@@ -728,7 +728,7 @@ var input = []scanner{
 		{c: coord{-617, -322, -662}, oc: coord{-617, -322, -662}},
 		{c: coord{-366, 684, -758}, oc: coord{-366, 684, -758}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-658, 498, -926}, oc: coord{-658, 498, -926}},
 		{c: coord{548, -363, -518}, oc: coord{548, -363, -518}},
 		{c: coord{-466, -409, -409}, oc: coord{-466, -409, -409}},
@@ -755,7 +755,7 @@ var input = []scanner{
 		{c: coord{537, -537, -408}, oc: coord{537, -537, -408}},
 		{c: coord{648, 495, -813}, oc: coord{648, 495, -813}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-370, 576, 594}, oc: coord{-370, 576, 594}},
 		{c: coord{756, -745, 848}, oc: coord{756, -745, 848}},
 		{c: coord{331, 573, -440}, oc: coord{331, 573, -440}},
@@ -782,7 +782,7 @@ var input = []scanner{
 		{c: coord{-858, -508, 754}, oc: coord{-858, -508, 754}},
 		{c: coord{-690, -695, -617}, oc: coord{-690, -695, -617}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{545, 732, 409}, oc: coord{545, 732, 409}},
 		{c: coord{848, 671, -609}, oc: coord{848, 671, -609}},
 		{c: coord{-531, 473, 545}, oc: coord{-531, 473, 545}},
@@ -809,7 +809,7 @@ var input = []scanner{
 		{c: coord{-516, -679, 627}, oc: coord{-516, -679, 627}},
 		{c: coord{519, -482, 449}, oc: coord{519, -482, 449}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-306, 737, 554}, oc: coord{-306, 737, 554}},
 		{c: coord{668, 707, -658}, oc: coord{668, 707, -658}},
 		{c: coord{762, -561, -580}, oc: coord{762, -561, -580}},
@@ -836,7 +836,7 @@ var input = []scanner{
 		{c: coord{102, 21, -46}, oc: coord{102, 21, -46}},
 		{c: coord{521, -501, 797}, oc: coord{521, -501, 797}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-695, 269, -473}, oc: coord{-695, 269, -473}},
 		{c: coord{-165, -59, -27}, oc: coord{-165, -59, -27}},
 		{c: coord{700, -453, 443}, oc: coord{700, -453, 443}},
@@ -864,7 +864,7 @@ var input = []scanner{
 		{c: coord{-639, -591, -391}, oc: coord{-639, -591, -391}},
 		{c: coord{-691, 308, -467}, oc: coord{-691, 308, -467}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{822, 509, -602}, oc: coord{822, 509, -602}},
 		{c: coord{-593, -792, 788}, oc: coord{-593, -792, 788}},
 		{c: coord{-444, 772, 466}, oc: coord{-444, 772, 466}},
@@ -891,7 +891,7 @@ var input = []scanner{
 		{c: coord{902, 732, 619}, oc: coord{902, 732, 619}},
 		{c: coord{-518, 758, -724}, oc: coord{-518, 758, -724}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-639, -722, -652}, oc: coord{-639, -722, -652}},
 		{c: coord{-332, 635, 547}, oc: coord{-332, 635, 547}},
 		{c: coord{620, -713, 690}, oc: coord{620, -713, 690}},
@@ -918,7 +918,7 @@ var input = []scanner{
 		{c: coord{712, 400, -521}, oc: coord{712, 400, -521}},
 		{c: coord{862, -589, -645}, oc: coord{862, -589, -645}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{807, -310, 365}, oc: coord{807, -310, 365}},
 		{c: coord{747, 802, -660}, oc: coord{747, 802, -660}},
 		{c: coord{-343, 494, 341}, oc: coord{-343, 494, 341}},
@@ -945,7 +945,7 @@ var input = []scanner{
 		{c: coord{-635, 477, -780}, oc: coord{-635, 477, -780}},
 		{c: coord{-378, -453, 317}, oc: coord{-378, -453, 317}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{462, -498, 474}, oc: coord{462, -498, 474}},
 		{c: coord{452, -352, 604}, oc: coord{452, -352, 604}},
 		{c: coord{486, 551, 654}, oc: coord{486, 551, 654}},
@@ -973,7 +973,7 @@ var input = []scanner{
 		{c: coord{-699, 828, -602}, oc: coord{-699, 828, -602}},
 		{c: coord{501, -388, -475}, oc: coord{501, -388, -475}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{542, 322, -585}, oc: coord{542, 322, -585}},
 		{c: coord{856, 657, 421}, oc: coord{856, 657, 421}},
 		{c: coord{470, -631, 749}, oc: coord{470, -631, 749}},
@@ -1001,7 +1001,7 @@ var input = []scanner{
 		{c: coord{-84, 28, -109}, oc: coord{-84, 28, -109}},
 		{c: coord{805, 809, 368}, oc: coord{805, 809, 368}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-558, 471, -344}, oc: coord{-558, 471, -344}},
 		{c: coord{-709, 594, 415}, oc: coord{-709, 594, 415}},
 		{c: coord{723, -703, -309}, oc: coord{723, -703, -309}},
@@ -1029,7 +1029,7 @@ var input = []scanner{
 		{c: coord{497, -267, 823}, oc: coord{497, -267, 823}},
 		{c: coord{-688, 506, 541}, oc: coord{-688, 506, 541}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{768, -432, -774}, oc: coord{768, -432, -774}},
 		{c: coord{-809, -717, -611}, oc: coord{-809, -717, -611}},
 		{c: coord{662, 774, -471}, oc: coord{662, 774, -471}},
@@ -1057,7 +1057,7 @@ var input = []scanner{
 		{c: coord{750, 706, -545}, oc: coord{750, 706, -545}},
 		{c: coord{-761, -678, -666}, oc: coord{-761, -678, -666}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-662, -665, 372}, oc: coord{-662, -665, 372}},
 		{c: coord{643, 910, 848}, oc: coord{643, 910, 848}},
 		{c: coord{-575, -544, -461}, oc: coord{-575, -544, -461}},
@@ -1084,7 +1084,7 @@ var input = []scanner{
 		{c: coord{-665, 636, -471}, oc: coord{-665, 636, -471}},
 		{c: coord{-852, 712, 710}, oc: coord{-852, 712, 710}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-827, 583, 978}, oc: coord{-827, 583, 978}},
 		{c: coord{647, 521, -591}, oc: coord{647, 521, -591}},
 		{c: coord{-480, -628, -720}, oc: coord{-480, -628, -720}},
@@ -1116,7 +1116,7 @@ var input = []scanner{
 }
 
 var sample = []scanner{
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{404, -588, -901}, oc: coord{404, -588, -901}},
 		{c: coord{528, -643, 409}, oc: coord{528, -643, 409}},
 		{c: coord{-838, 591, 734}, oc: coord{-838, 591, 734}},
@@ -1143,7 +1143,7 @@ var sample = []scanner{
 		{c: coord{-789, 900, -551}, oc: coord{-789, 900, -551}},
 		{c: coord{459, -707, 401}, oc: coord{459, -707, 401}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{686, 422, 578}, oc: coord{686, 422, 578}}, // match
 		{c: coord{605, 423, 415}, oc: coord{605, 423, 415}},
 		{c: coord{515, 917, -361}, oc: coord{515, 917, -361}},
@@ -1170,7 +1170,7 @@ var sample = []scanner{
 		{c: coord{755, -354, -619}, oc: coord{755, -354, -619}},
 		{c: coord{553, 889, -390}, oc: coord{553, 889, -390}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{649, 640, 665}, oc: coord{649, 640, 665}},
 		{c: coord{682, -795, 504}, oc: coord{682, -795, 504}},
 		{c: coord{-784, 533, -524}, oc: coord{-784, 533, -524}},
@@ -1198,7 +1198,7 @@ var sample = []scanner{
 		{c: coord{-742, -814, -386}, oc: coord{-742, -814, -386}},
 		{c: coord{577, -820, 562}, oc: coord{577, -820, 562}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{-589, 542, 597}, oc: coord{-589, 542, 597}},
 		{c: coord{605, -692, 669}, oc: coord{605, -692, 669}},
 		{c: coord{-500, 565, -823}, oc: coord{-500, 565, -823}},
@@ -1225,7 +1225,7 @@ var sample = []scanner{
 		{c: coord{614, -800, 639}, oc: coord{614, -800, 639}},
 		{c: coord{595, 780, -596}, oc: coord{595, 780, -596}},
 	}},
-	{probes: []*probe{
+	{beacons: []*beacon{
 		{c: coord{727, 592, 562}, oc: coord{727, 592, 562}},
 		{c: coord{-293, -554, 779}, oc: coord{-293, -554, 779}},
 		{c: coord{441, 611, -461}, oc: coord{441, 611, -461}},
