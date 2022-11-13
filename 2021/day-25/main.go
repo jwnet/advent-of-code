@@ -5,93 +5,68 @@ import "fmt"
 func step() bool {
 	nrows := len(m)
 	ncols := len(m[0])
-	swaps := false
+	swapment := false
 
-	nm := make([][]rune,nrows)
-	for r, _ := range nm {
-		nm[r] = make([]rune,ncols)
-		copy(nm[r], m[r])
+	swap := func(r1,c1,r2,c2 int) {
+		m[r1][c1], m[r2][c2] = m[r2][c2], m[r1][c1]
+		swapment = true
 	}
 
-	nextCol := func(c int) int {
-		n := c+1
-		if n >= ncols {
-			n = 0
+	mark := func(r,c int) {
+		m[r][c] = 'x'
+	}
+
+	unmark := func(r,c int) {
+		if m[r][c] == 'x' {
+			m[r][c] = '.'
 		}
-		return n
-	}
-	
-	swapCol := func(r1, c1, r2, c2 int) {
-		nm[r1][c1], nm[r2][c2] = nm[r2][c2], nm[r1][c1]
-		swaps = true
 	}
 
-	for r := 0; r < nrows; r++ {
-		for c := ncols - 1; c >= 0; c-- {
-			cell := m[r][c]
-			switch cell {
-			case '>':
-				n := nextCol(c)
-				if m[r][n] == '.' {
-					swapCol(r,c,r,n)
+	for r, _ := range m {
+		for c := 0; c < ncols; c++ {
+			if m[r][c] != '>' {
+				continue
+			}
+
+			nc := (c+1) % ncols
+			if m[r][nc] == '.' {
+				swap(r,c,r,nc)
+				if c == 0 {
+					mark(r, 0)
 				}
+				c++
 			}
 		}
+		unmark(r, 0)
 	}
 
-	nnm := make([][]rune,nrows)
-	for r, _ := range nnm {
-		nnm[r] = make([]rune,ncols)
-		copy(nnm[r], nm[r])
-	}
-
-	nextRow := func(r int) int {
-		n := r+1
-		if n >= nrows {
-			n = 0
-		}
-		return n
-	}
-
-	swapRow := func(r1, c1, r2, c2 int) {
-		nnm[r1][c1], nnm[r2][c2] = nnm[r2][c2], nnm[r1][c1]
-		swaps = true
-	}
 	for c := 0; c < ncols; c++ {
-		for r := nrows -1; r >= 0; r-- {
-			cell := nm[r][c]
-			switch cell {
-			case 'v':
-				n := nextRow(r)
-				if nm[n][c] == '.' {
-					swapRow(r,c,n,c)
+		for r := 0; r < nrows; r++ {
+			if m[r][c] != 'v' {
+				continue
+			}
+			nr := (r+1) % nrows
+			if m[nr][c] == '.' {
+				swap(r,c,nr,c)
+				if r == 0 {
+					mark(0, c)
 				}
+				r++
 			}
 		}
+		unmark(0, c)
 	}
-	copy(m, nnm)
-	return swaps
+
+	return swapment
 }
 
 func main() {
-	i := 0
+	i := 1
 	for step() {
 		i++
-		fmt.Println(i)
-		print(m)
 	}
-	fmt.Println(i+1)
-}
-
-func print(s [][]rune) {
-	for _, row := range s {
-		var str []rune
-		for _, v := range row {
-			str = append(str, v)
-		}
-		fmt.Println(string(str))
-	}
-	fmt.Println("")
+	fmt.Println(i)
+	// 482
 }
 
 var m [][]rune = [][]rune{{'>', '.', '>', '.', '.', '>', '>', '.', '>', '.', '.', '>', '.', 'v', 'v', '>', '>', 'v', 'v', '.', '.', '>', 'v', '.', '.', '.', '.', '.', '.', 'v', 'v', 'v', 'v', '>', 'v', '.', '.', '>', '>', '.', '>', 'v', 'v', '.', '>', 'v', '.', '>', 'v', '.', '.', 'v', '>', '.', '.', '.', '.', '>', 'v', '.', '.', '>', '>', '.', '>', 'v', 'v', '>', 'v', '>', 'v', '.', '.', '.', '.', '.', '>', 'v', '>', '.', '.', 'v', '.', '.', '.', '.', '>', '.', 'v', '.', 'v', 'v', '.', 'v', '>', '>', '.', '.', '>', '>', '>', '.', '.', '.', '>', 'v', '.', '.', 'v', 'v', 'v', '.', '>', 'v', '>', 'v', '>', '>', '>', '.', '.', '>', '.', '>', '>', 'v', '>', '>', '>', '.', 'v', '>', 'v', 'v', '.', '.', '.', '.', '>'},
