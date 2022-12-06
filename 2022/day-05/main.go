@@ -65,14 +65,14 @@ func instructionsFrom(s string) []instruction {
 func stackTops(stacks []*list.List[rune]) string {
 	s := strings.Builder{}
 	for _, stack := range stacks {
-		_, r := stack.Front()
+		r, _ := stack.Front()
 		s.WriteRune(r)
 	}
 	return s.String()
 }
 
 func top2top(s1, s2 *list.List[rune]) {
-	ok, r := s1.Pop()
+	r, ok := s1.Pop()
 	if !ok {
 		println(r)
 		panic("oh no")
