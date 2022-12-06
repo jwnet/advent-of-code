@@ -17,7 +17,7 @@ func findEndOfMarker(mesg string, markerLen int) int {
 			if len(rMap) == markerLen {
 				return i + 1
 			}
-			_, end := buffer.Drop()
+			end, _ := buffer.Drop()
 			if n := rMap[end]; n > 1 {
 				rMap[end] = n - 1
 			} else {
